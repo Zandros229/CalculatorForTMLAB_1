@@ -42,8 +42,51 @@ public class CalculateViewModel extends ViewModel {
 
     public void division(double number){
         if(resoult!=null) {
-            double temp = resoult.getValue() * number;
+            double temp = resoult.getValue() / number;
             resoult.setValue(temp);
         }
     }
+
+    public void inverse(){
+        if(resoult!=null) { ;
+            resoult.setValue(-(resoult.getValue()));
+        }
+    }
+
+    public void sinus(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.sin(resoult.getValue()));
+        }
+    }
+
+    public void cosinus(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.cos(resoult.getValue()));
+        }
+    }
+
+    public void tangens(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.tan(resoult.getValue()));
+        }
+    }
+
+    public void lognt(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.log(resoult.getValue()));
+        }
+    }
+
+    public void logTen(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.log10(resoult.getValue()));
+        }
+    }
+
+    public void percent(){
+        if(resoult!=null) { ;
+            resoult.setValue(Math.log10(resoult.getValue()));
+        }
+    }
+
 }
