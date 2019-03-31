@@ -16,6 +16,7 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void add(double number){
+        last_resoult=resoult.getValue();
         if(resoult!=null) {
             double temp = resoult.getValue() + number;
             resoult.setValue(temp);
@@ -25,6 +26,7 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void sub(double number){
+        last_resoult=resoult.getValue();
         if(resoult!=null) {
             double temp = resoult.getValue() - number;
             resoult.setValue(temp);
@@ -34,6 +36,7 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void multiplication(double number){
+        last_resoult=resoult.getValue();
         if(resoult!=null) {
             double temp = resoult.getValue() * number;
             resoult.setValue(temp);
@@ -41,6 +44,7 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void division(double number){
+        last_resoult=resoult.getValue();
         if(resoult!=null) {
             double temp = resoult.getValue() / number;
             resoult.setValue(temp);
@@ -48,45 +52,83 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void inverse(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(-(resoult.getValue()));
         }
     }
 
     public void sinus(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(Math.sin(resoult.getValue()));
         }
     }
 
     public void cosinus(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(Math.cos(resoult.getValue()));
         }
     }
 
     public void tangens(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(Math.tan(resoult.getValue()));
         }
     }
 
     public void lognt(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(Math.log(resoult.getValue()));
         }
     }
 
     public void logTen(){
-        if(resoult!=null) { ;
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
             resoult.setValue(Math.log10(resoult.getValue()));
         }
     }
 
-    public void percent(){
-        if(resoult!=null) { ;
-            resoult.setValue(Math.log10(resoult.getValue()));
+    public void percent(double number){
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
+            resoult.setValue(resoult.getValue()*(number*0.01));
         }
     }
+
+    public void sqrt(){
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
+            resoult.setValue(Math.sqrt(resoult.getValue()));
+        }
+    }
+
+    public void pow(double number){
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
+            resoult.setValue(Math.pow(resoult.getValue(),number));
+        }
+    }
+
+    public void powsq(){
+        last_resoult=resoult.getValue();
+        if(resoult!=null) {
+            resoult.setValue(Math.pow(resoult.getValue(),2));
+        }
+    }
+
+    public void back(){
+        if(last_resoult!=null) {
+            resoult.setValue(last_resoult);
+        }
+        else
+            resoult.setValue(0.0);
+    }
+
+
 
 }
