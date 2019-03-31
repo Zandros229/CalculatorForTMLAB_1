@@ -129,6 +129,11 @@ public class CalculateViewModel extends ViewModel {
             resoult.setValue(0.0);
     }
 
+    public void newResoult(double number){
+        last_resoult=resoult.getValue();
+        resoult.setValue(number);
+    }
+
 
 
 }
