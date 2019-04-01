@@ -7,6 +7,12 @@ public class CalculateViewModel extends ViewModel {
     private MutableLiveData<Double> resoult;
     private Double last_resoult;
 
+    public CalculateViewModel() {
+        this.resoult = new MutableLiveData<Double>();
+        this.resoult.setValue(0.0);
+        this.last_resoult = this.resoult.getValue();
+    }
+
     public MutableLiveData<Double> getCurrentResoult() {
         if (resoult == null) {
             resoult = new MutableLiveData<Double>();
@@ -108,8 +114,9 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void pow(double number){
-        last_resoult=resoult.getValue();
+
         if(resoult!=null) {
+            last_resoult=resoult.getValue();
             resoult.setValue(Math.pow(resoult.getValue(),number));
         }
     }
@@ -130,8 +137,17 @@ public class CalculateViewModel extends ViewModel {
     }
 
     public void newResoult(double number){
-        last_resoult=resoult.getValue();
+        if(resoult!=null)
+            last_resoult=resoult.getValue();
         resoult.setValue(number);
+    }
+    public void addNumber(String number){
+        if(resoult!=null) {
+            last_resoult = resoult.getValue();
+            resoult.setValue(Double.valueOf((getCurrentResoult()).toString() + number));
+        }else
+            resoult.setValue(0.0);
+
     }
 
 
