@@ -5,6 +5,31 @@ public class Calculator {
     public Double resoult=new Double(0.0);
     public double last_resoult=resoult;
     public boolean dot=false;
+    public boolean clicked=false;
+    public String last;
+    public String operation;
+    public boolean usedOperation=false;
+
+    public void setUpOpertion(String operation){
+        this.operation=operation;
+        usedOperation=true;
+    }
+
+    public void save(){
+        last=String.valueOf(last_resoult);
+    }
+
+
+    public void zeroClicked(){
+        clicked=true;
+    }
+    public void dotClicked(){
+        dot=true;
+    }
+    public void ac(){
+        dot=false;
+        clicked=false;
+    }
 
 
     public void add(double number){
@@ -115,7 +140,7 @@ public class Calculator {
     }
 
     public void back(){
-        resoult=(last_resoult);
+        resoult=Double.valueOf(last);
     }
 
     public void newResoult(double number){
@@ -129,7 +154,7 @@ public class Calculator {
             last_resoult = resoult;
             resoult=(Double.valueOf(String.valueOf(resoult.intValue())+"."+number));
         }
-         else if (resoult!=0.0) {
+        else if (resoult!=0.0) {
             last_resoult = resoult;
             resoult=(Double.valueOf((resoult).toString() + number));
         }
@@ -146,17 +171,23 @@ public class Calculator {
             resoult=Double.valueOf(number);
 
     }
-    public boolean checkDot(){
-        if((resoult.intValue()-resoult)==0)
-            return true;
-        else
-            return false;
-    }
     public Double getResoult() {
         return resoult;
     }
 
     public double getLast_resoult() {
         return last_resoult;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+    public void clear(){
+          resoult=new Double(0.0);
+          last_resoult=resoult;
+          dot=false;
+          clicked=false;
+          last="";
+          usedOperation=false;
     }
 }
