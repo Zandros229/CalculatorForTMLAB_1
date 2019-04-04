@@ -65,6 +65,9 @@ public class AdvancedActivity extends AppCompatActivity {
                 calculator.save();
                 if (!(number.endsWith("."))) {
                     calculator.newResoult(Double.valueOf(number));
+                    if(Double.valueOf(number).intValue()==Double.valueOf(number)){
+                        display.setText(String.valueOf(Double.valueOf(number).intValue()));
+                    }
                 }
 
             }
@@ -333,9 +336,9 @@ public class AdvancedActivity extends AppCompatActivity {
 
             case R.id.log:
                 calculator.logTen();
-                if(calculator.getResoult().isNaN()) {
+                if(calculator.getResoult().isNaN()||calculator.getResoult()<=0) {
                     calculator.back();
-                    Toast toast = Toast.makeText(getApplicationContext(), "Ujemna Liczba", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Błędna Liczba", Toast.LENGTH_SHORT);
                     toast.show();
                 }else
                     model.getCurrentResoult().setValue(calculator.getResoult().toString());
@@ -343,9 +346,9 @@ public class AdvancedActivity extends AppCompatActivity {
 
             case R.id.ln:
                 calculator.lognt();
-                if(calculator.getResoult().isNaN()) {
+                if(calculator.getResoult().isNaN()||calculator.getResoult()<=0) {
                     calculator.back();
-                    Toast toast = Toast.makeText(getApplicationContext(), "Ujemna Liczba", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Błędna Liczba", Toast.LENGTH_SHORT);
                     toast.show();
                 }else
                     model.getCurrentResoult().setValue(calculator.getResoult().toString());
