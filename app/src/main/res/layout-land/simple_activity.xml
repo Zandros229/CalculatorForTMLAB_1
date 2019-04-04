@@ -89,6 +89,20 @@
             android:textColor="@color/primary_text"
             android:textSize="15sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/minus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/minus"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
     <!--second row-->
     <LinearLayout
@@ -97,6 +111,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:layout_weight="1">
+
+        <Button
+            android:id="@+id/six"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/six"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/seven"
@@ -149,6 +176,7 @@
             android:textColor="@color/primary_text"
             android:textSize="15sp"
             android:textStyle="bold" />
+
     </LinearLayout>
     <!--third row-->
     <LinearLayout
@@ -157,79 +185,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:layout_weight="1">
-
-        <Button
-            android:id="@+id/four"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/four"
-            android:textColor="@color/primary_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/five"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/five"
-            android:textColor="@color/primary_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/six"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/six"
-            android:textColor="@color/primary_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/minus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/minus"
-            android:textColor="@color/primary_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-    <!--fourth row-->
-    <LinearLayout
-        android:id="@+id/four_row"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:layout_weight="1">
-
-        <Button
-            android:id="@+id/one"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/one"
-            android:textColor="@color/primary_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/two"
@@ -258,6 +213,32 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/four"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/five"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/five"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/plus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -270,13 +251,26 @@
             android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
-    <!--fifth row-->
+    <!--fourth row-->
     <LinearLayout
-        android:id="@+id/five_row"
+        android:id="@+id/four_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:layout_weight="1">
+
+        <Button
+            android:id="@+id/one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/one"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/zero"
@@ -330,5 +324,6 @@
             android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
+    <!--fifth row-->
 
 </LinearLayout>

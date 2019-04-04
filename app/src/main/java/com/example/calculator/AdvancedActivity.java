@@ -24,7 +24,6 @@ public class AdvancedActivity extends AppCompatActivity {
     private Button eight;
     private Button nine;
     private Button zero;
-    private Button dZero;
     private Button point;
     private Button acc;
     private Button bkcs;
@@ -34,6 +33,16 @@ public class AdvancedActivity extends AppCompatActivity {
     private Button multi;
     private Button div;
     private Button equals;
+    private Button sin;
+    private Button cos;
+    private Button tan;
+    private Button ln;
+    private Button sqrt;
+    private Button pow_x_2;
+    private Button pow_x_y;
+    private Button log;
+    private Button percent;
+
 
     private Calculator calculator = new Calculator();
     private Calculator second = new Calculator();
@@ -99,6 +108,21 @@ public class AdvancedActivity extends AppCompatActivity {
                 a.ac();
                 a.clear();
                 break;
+
+            case "%":
+                a.percent(calculator.getResoult());
+                model.getCurrentResoult().setValue(a.getResoult().toString());
+                a.ac();
+                a.clear();
+                break;
+
+            case "^":
+                a.pow(calculator.getResoult());
+                model.getCurrentResoult().setValue(a.getResoult().toString());
+                a.ac();
+                a.clear();
+                break;
+
 
             case "/":
                 if (calculator.getResoult() == 0) {
@@ -276,21 +300,6 @@ public class AdvancedActivity extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.double_zero:
-                if (dot) {
-                    if (model.getCurrentResoult().getValue().endsWith(".0")) {
-                        temp = model.getCurrentResoult().getValue().concat("0");
-                        model.getCurrentResoult().setValue(temp);
-                    } else {
-                        temp = model.getCurrentResoult().getValue().concat("00");
-                        model.getCurrentResoult().setValue(temp);
-                    }
-                } else {
-                    calculator.addNumber("00");
-                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
-                }
-                break;
-
             case R.id.dot:
 
                 if (!dot) {
@@ -315,6 +324,62 @@ public class AdvancedActivity extends AppCompatActivity {
             case R.id.plus_minus:
                 calculator.inverse();
                 model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.pow_x_2:
+                calculator.powsq();
+                model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.log:
+                calculator.logTen();
+                if(calculator.getResoult().isNaN()) {
+                    calculator.back();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Ujemna Liczba", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.ln:
+                calculator.lognt();
+                if(calculator.getResoult().isNaN()) {
+                    calculator.back();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Ujemna Liczba", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.sin:
+                calculator.sinus();
+                model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.cos:
+                calculator.cosinus();
+                model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                break;
+
+            case R.id.sqrt:
+                if(calculator.getResoult()>=0) {
+                    calculator.sqrt();
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "Liczba Ujemna", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                break;
+
+            case R.id.tan:
+                calculator.tangens();
+                if(calculator.getResoult().isNaN()) {
+                    calculator.back();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Nie miesci się w dziedzinie funkcji Tangens", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else {
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                }
                 break;
 
             case R.id.plus:
@@ -381,6 +446,39 @@ public class AdvancedActivity extends AppCompatActivity {
                 }
                 break;
 
+            case R.id.percent:
+                if (second.usedOperation == false) {
+                    second.resoult = calculator.getResoult();
+                    second.setUpOpertion("%");
+                    calculator.clear();
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                } else {
+                    equalsUse(second);
+                    second.clear();
+                    second.resoult = calculator.getResoult();
+                    second.setUpOpertion("%");
+                    calculator.clear();
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                }
+                break;
+
+            case R.id.pow_x_y:
+                if (second.usedOperation == false) {
+                    second.resoult = calculator.getResoult();
+                    second.setUpOpertion("^");
+                    calculator.clear();
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                } else {
+                    equalsUse(second);
+                    second.clear();
+                    second.resoult = calculator.getResoult();
+                    second.setUpOpertion("^");
+                    calculator.clear();
+                    model.getCurrentResoult().setValue(calculator.getResoult().toString());
+                }
+                break;
+
+
             case R.id.equal:
                 equalsUse(second);
                 second.clear();
@@ -403,7 +501,6 @@ public class AdvancedActivity extends AppCompatActivity {
         eight = (Button) findViewById(R.id.eight);
         nine = (Button) findViewById(R.id.nine);
         zero = (Button) findViewById(R.id.zero);
-        dZero = (Button) findViewById(R.id.double_zero);
         point = (Button) findViewById(R.id.dot);
         acc = (Button) findViewById(R.id.ac);
         bkcs = (Button) findViewById(R.id.backspace);
@@ -413,6 +510,16 @@ public class AdvancedActivity extends AppCompatActivity {
         multi = (Button) findViewById(R.id.multiply);
         div = (Button) findViewById(R.id.divide);
         equals = (Button) findViewById(R.id.equal);
+        sin=(Button) findViewById(R.id.sin);
+        cos=(Button) findViewById(R.id.cos);
+        tan=(Button) findViewById(R.id.tan);
+        ln=(Button) findViewById(R.id.ln);
+        sqrt=(Button) findViewById(R.id.sqrt);
+        pow_x_2=(Button) findViewById(R.id.pow_x_2);
+        pow_x_y=(Button) findViewById(R.id.pow_x_y);
+        log=(Button) findViewById(R.id.log);
+        percent=(Button) findViewById(R.id.percent);
+
 
 
         one.setOnClickListener(listener);
@@ -425,7 +532,6 @@ public class AdvancedActivity extends AppCompatActivity {
         eight.setOnClickListener(listener);
         nine.setOnClickListener(listener);
         zero.setOnClickListener(listener);
-        dZero.setOnClickListener(listener);
         point.setOnClickListener(listener);
         acc.setOnClickListener(listener);
         bkcs.setOnClickListener(listener);
@@ -435,6 +541,16 @@ public class AdvancedActivity extends AppCompatActivity {
         multi.setOnClickListener(listener);
         div.setOnClickListener(listener);
         equals.setOnClickListener(listener);
+        sin.setOnClickListener(listener);
+        cos.setOnClickListener(listener);
+        tan.setOnClickListener(listener);
+        ln.setOnClickListener(listener);
+        sqrt.setOnClickListener(listener);
+        pow_x_2.setOnClickListener(listener);
+        pow_x_y.setOnClickListener(listener);
+        log.setOnClickListener(listener);
+        percent.setOnClickListener(listener);
+
     }
 }
 

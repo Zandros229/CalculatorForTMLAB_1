@@ -65,14 +65,14 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/plus-minus"
+            android:id="@+id/percent"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/primary"
             android:padding="8dp"
-            android:text="@string/plus_minus"
+            android:text="@string/percent"
             android:textColor="@color/primary_text"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -412,19 +412,6 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/double_zero"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:padding="8dp"
-            android:text="@string/double_zero"
-            android:textColor="@color/primary_text"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/dot"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -433,6 +420,19 @@
             android:background="@color/primary"
             android:padding="8dp"
             android:text="@string/dot"
+            android:textColor="@color/primary_text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/plus-minus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/primary"
+            android:padding="8dp"
+            android:text="@string/plus_minus"
             android:textColor="@color/primary_text"
             android:textSize="20sp"
             android:textStyle="bold" />

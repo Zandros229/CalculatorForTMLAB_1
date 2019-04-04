@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button simple_button;
     Button advanced_button;
+    Button autor;
+    Button exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         simple_button=(Button) findViewById(R.id.Simple);
         advanced_button=(Button) findViewById(R.id.Advanced);
+        autor=(Button) findViewById(R.id.Author);
+        exit=(Button) findViewById(R.id.Exit);
 
         advanced_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +38,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), SimpleActivity.class);
                 startActivity(intent);
+            }
+        });
+        autor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), AuthorActivity.class);
+                startActivity(intent);
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
             }
         });
     }
