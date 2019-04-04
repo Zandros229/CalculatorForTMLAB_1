@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
-    tools:context=".AuthorActivity">
+    android:background="@color/primary_light">
 
     <TextView
         android:id="@+id/Name"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="309dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="285dp"
+        android:layout_marginBottom="137dp"
         android:text="Ernest Figura"
         android:textAlignment="center"
         android:textColor="@color/primary_text"
@@ -19,15 +19,14 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Author" />
 
     <TextView
         android:id="@+id/Author"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="172dp"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="74dp"
         android:text="Author"
         android:textAlignment="center"
         android:textColor="@color/primary_text"
@@ -37,5 +36,4 @@
         app:layout_constraintEnd_toEndOf="@+id/Name"
         app:layout_constraintStart_toStartOf="@+id/Name"
         app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>
