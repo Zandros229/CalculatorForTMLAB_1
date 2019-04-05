@@ -65,9 +65,6 @@ public class AdvancedActivity extends AppCompatActivity {
                 calculator.save();
                 if (!(number.endsWith("."))) {
                     calculator.newResoult(Double.valueOf(number));
-                    if(Double.valueOf(number).intValue()==Double.valueOf(number)){
-                        display.setText(String.valueOf(Double.valueOf(number).intValue()));
-                    }
                 }
 
             }
