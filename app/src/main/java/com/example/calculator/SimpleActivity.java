@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 public class SimpleActivity extends AppCompatActivity {
 
+    private LastViewModel last;
     private CalculateViewModel model;
+    private TwiceViewModel twice;
     private TextView display;
     private Button one;
     private Button two;
@@ -48,21 +50,30 @@ public class SimpleActivity extends AppCompatActivity {
         setUpButtons();
 
         model = ViewModelProviders.of(this).get(CalculateViewModel.class);
+        last = ViewModelProviders.of(this).get(LastViewModel.class);
+        twice = ViewModelProviders.of(this).get(TwiceViewModel.class);
         final Observer<String> nameObserver = new Observer<String>() {
             @Override
             public void onChanged(final String number) {
                 display.clearComposingText();
                 display.setText(number);
                 calculator.save();
+
                 if (!(number.endsWith("."))) {
-                    calculator.newResoult(Double.valueOf(number));
+                    if(calculator.getResoult().isInfinite()){
+                        calculator.back();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Liczba poza zakresem ", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }else {
+                        last.getCurrentResoult().setValue(model.getCurrentResoult().getValue().substring(0, model.getCurrentResoult().getValue().length() - 3));
+                        calculator.newResoult(Double.valueOf(number));
+                    }
                 }
 
             }
         };
 
         model.getCurrentResoult().observe(this, nameObserver);
-
         calculator.newResoult(Double.valueOf(model.getCurrentResoult().getValue()));
     }
 
@@ -76,7 +87,11 @@ public class SimpleActivity extends AppCompatActivity {
 
 
     private void equalsUse(Calculator a) {
-        System.out.println(calculator.getResoult()+"   "+a.getResoult()+"XDDDD");
+
+        calculator.newResoult(Double.valueOf(model.getCurrentResoult().getValue()));
+        a.newResoult(Double.valueOf(twice.getCurrentResoult().getValue().substring(0,twice.getCurrentResoult().getValue().length()-2)));
+        a.setUpOpertion(twice.getCurrentResoult().getValue().substring(twice.getCurrentResoult().getValue().length()-1));
+        System.out.println(calculator.getResoult()+"   "+a.getResoult()+"XDDDD"+a.operation);
         switch (a.getOperation()) {
 
             case "+":
@@ -309,7 +324,10 @@ public class SimpleActivity extends AppCompatActivity {
                 break;
 
             case R.id.backspace:
-                calculator.back();
+                if(last.getCurrentResoult().getValue().isEmpty())
+                    calculator.newResoult(0.0);
+                else
+                    calculator.newResoult(Double.valueOf(last.getCurrentResoult().getValue()));
                 model.getCurrentResoult().setValue(calculator.getResoult().toString());
                 break;
 
@@ -320,6 +338,7 @@ public class SimpleActivity extends AppCompatActivity {
 
             case R.id.plus:
                 if(second.usedOperation==false) {
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"+");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("+");
                     calculator.clear();
@@ -327,6 +346,7 @@ public class SimpleActivity extends AppCompatActivity {
                 }else{
                     equalsUse(second);
                     second.clear();
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"+");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("+");
                     calculator.clear();
@@ -336,6 +356,7 @@ public class SimpleActivity extends AppCompatActivity {
 
             case R.id.minus:
                 if(second.usedOperation==false) {
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"-");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("-");
                     calculator.clear();
@@ -343,6 +364,7 @@ public class SimpleActivity extends AppCompatActivity {
                 }else{
                     equalsUse(second);
                     second.clear();
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"-");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("-");
                     calculator.clear();
@@ -352,13 +374,16 @@ public class SimpleActivity extends AppCompatActivity {
 
             case R.id.multiply:
                 if(second.usedOperation==false) {
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"*");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("*");
                     calculator.clear();
                     model.getCurrentResoult().setValue(calculator.getResoult().toString());
                 }else{
+
                     equalsUse(second);
                     second.clear();
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"*");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("*");
                     calculator.clear();
@@ -368,6 +393,7 @@ public class SimpleActivity extends AppCompatActivity {
 
             case R.id.divide:
                 if(second.usedOperation==false) {
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"/");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("/");
                     calculator.clear();
@@ -375,6 +401,7 @@ public class SimpleActivity extends AppCompatActivity {
                 }else{
                     equalsUse(second);
                     second.clear();
+                    twice.getCurrentResoult().setValue(calculator.getResoult().toString()+"/");
                     second.resoult = calculator.getResoult();
                     second.setUpOpertion("/");
                     calculator.clear();
@@ -383,6 +410,7 @@ public class SimpleActivity extends AppCompatActivity {
                 break;
 
             case R.id.equal:
+                second.resoult=Double.valueOf(model.getCurrentResoult().getValue());
                 equalsUse(second);
                 second.clear();
                 break;

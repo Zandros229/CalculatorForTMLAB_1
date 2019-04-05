@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class AdvancedActivity extends AppCompatActivity {
 
+    private LastViewModel last;
     private CalculateViewModel model;
     private TextView display;
     private Button one;
@@ -57,6 +58,7 @@ public class AdvancedActivity extends AppCompatActivity {
         setUpButtons();
 
         model = ViewModelProviders.of(this).get(CalculateViewModel.class);
+        last = ViewModelProviders.of(this).get(LastViewModel.class);
         final Observer<String> nameObserver = new Observer<String>() {
             @Override
             public void onChanged(final String number) {
@@ -64,7 +66,15 @@ public class AdvancedActivity extends AppCompatActivity {
                 display.setText(number);
                 calculator.save();
                 if (!(number.endsWith("."))) {
-                    calculator.newResoult(Double.valueOf(number));
+
+                    if(calculator.getResoult().isInfinite()){
+                        calculator.back();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Liczba poza zakresem ", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }else {
+                        last.getCurrentResoult().setValue(model.getCurrentResoult().getValue().substring(0, model.getCurrentResoult().getValue().length() - 3));
+                        calculator.newResoult(Double.valueOf(number));
+                    }
                 }
 
             }
@@ -317,7 +327,10 @@ public class AdvancedActivity extends AppCompatActivity {
                 break;
 
             case R.id.backspace:
-                calculator.back();
+                if(last.getCurrentResoult().getValue().isEmpty())
+                    calculator.newResoult(0.0);
+                else
+                    calculator.newResoult(Double.valueOf(last.getCurrentResoult().getValue()));
                 model.getCurrentResoult().setValue(calculator.getResoult().toString());
                 break;
 
